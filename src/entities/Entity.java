@@ -19,16 +19,16 @@ public abstract class Entity {
     }
 
     protected void drawHitbox(Graphics g) {
-        // TODO: set the hitbox color to pink with g.setColor(Color.PINK)
-        // TODO: set the hitbox rectangle with g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height)
+      g.setColor(Color.PINK);
+      g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
 
     protected void initHitbox(float x, float y, int width, int height) {
-        // TODO: initialize hitbox with hitbox = new Rectangle2D.FLOAT passing in the appropriate parameters.
+        hitbox = new Rectangle2D.Float(x, y, width, height);
     }
 
     public Rectangle2D.Float getHitbox() {
-		// TODO: return this hitbox.
+		return hitbox;
     }
 
 }

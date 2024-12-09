@@ -31,7 +31,7 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
-        // TODO: call initHitbox passing in x, y, (int) (20 * Game.SCALE), (int) (27 * Game.SCALE)
+        initHitbox(x, y, (int) (20 * Game.SCALE), (int) (27 * Game.SCALE));
     }
 
     public void update() {
@@ -41,7 +41,7 @@ public class Player extends Entity {
     }
 
     public void render(Graphics g) {
-        // TODO: call g.drawImage passing in animations[playerAction][aniIndex], (int)(hitbox.x - xDrawOffset), (int)(hitbox.y - YDrawOffset), width, height, null)
+        g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
     }
 
     private void updateAnimationTick() {
@@ -63,10 +63,12 @@ public class Player extends Entity {
         else
             playerAction = IDLE;
 
-        // TODO: if inAir
-        // TODO: if airSpeed is less than 0
-        // TODO: set playerAction to JUMP
-        // TODO: else set playerAction to FALLING
+        if (inAir)
+            if (airSpeed < 0) {
+                playerAction = JUMP;
+            } else {
+                playerAction = FALLING;
+            }
 
 
         if (attacking)
@@ -83,6 +85,9 @@ public class Player extends Entity {
 
     private void updatePos() {
         moving = false;
+
+        if (jump)
+            jump();
 
         // TODO: if jump
         // TODO: call jump()
