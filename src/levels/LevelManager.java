@@ -8,34 +8,44 @@ import utilz.LoadSave;
 
 public class LevelManager {
 
-	// TODO: all fields are private
-	// TODO: create a Game called game
-	// TODO: create a BufferedImage[] called levelSprite
-	// TODO: create a Level called levelOne
+
+	private Game game;
+	private BufferedImage[] levelSprite;
+	private Level levelOne;
 
 
 	public LevelManager(Game game) {
-		// TODO: set this game to game
-		// TODO: call importOutsideSprites()
-		// TODO: set levelOne to newLevel(LoadSave.GetLevelData()
+		this.game = game;
+		importOutsideSprites();
+		levelOne = new Level(LoadSave.GetLevelData());
 	}
 
 	private void importOutsideSprites() {
 		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.LEVEL_ATLAS);
 		levelSprite = new BufferedImage[48];
-		for (int j = 0; j < 4; j++)
+		for (int j = 0; j < 4; j++) {
 			for (int i = 0; i < 12; i++) {
 				int index = j * 12 + i;
 				levelSprite[index] = img.getSubimage(i * 32, j * 32, 32, 32);
 			}
+		}
 	}
 
+	// Method to draw the current level
 	public void draw(Graphics g) {
-		for (int j = 0; j < Game.TILES_IN_HEIGHT; j++)
+		for (int j = 0; j < Game.TILES_IN_HEIGHT; j++) {
 			for (int i = 0; i < Game.TILES_IN_WIDTH; i++) {
-				int index = levelOne.getSpriteIndex(i, j);
-				g.drawImage(levelSprite[index], Game.TILES_SIZE * i, Game.TILES_SIZE * j, Game.TILES_SIZE, Game.TILES_SIZE, null);
+				int index = levelOne.getSpriteIndex(i, j); // Get sprite index for each tile
+				g.drawImage(
+						levelSprite[index],
+						Game.TILES_SIZE * i,
+						Game.TILES_SIZE * j,
+						Game.TILES_SIZE,
+						Game.TILES_SIZE,
+						null
+				);
 			}
+		}
 	}
 
 	public void update() {
@@ -43,7 +53,7 @@ public class LevelManager {
 	}
 
 	public Level getCurrentLevel() {
-		// TODO: return levelOne
+		return levelOne;
 	}
-
 }
+
