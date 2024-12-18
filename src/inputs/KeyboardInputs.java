@@ -16,17 +16,7 @@ public class KeyboardInputs implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// Not commonly used in games, but here's an implementation:
-		switch (Gamestate.state) {
-			case MENU:
-				gamePanel.getGame().getMenu().keyTyped(e);
-				break;
-			case PLAYING:
-				gamePanel.getGame().getPlaying().keyTyped(e);
-				break;
-			default:
-				break;
-		}
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -40,6 +30,7 @@ public class KeyboardInputs implements KeyListener {
 				break;
 			default:
 				break;
+
 		}
 	}
 

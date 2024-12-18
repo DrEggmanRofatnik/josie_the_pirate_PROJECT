@@ -68,7 +68,7 @@ public class Menu extends State implements Statemethods {
 		for (MenuButton mb : buttons) {
 			if (isIn(e, mb)) {
 				if (mb.isMousePressed()) {
-					mb.applyGameState();
+					mb.applyGamestate();
 					break;
 				}
 			}
@@ -105,10 +105,7 @@ public class Menu extends State implements Statemethods {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// Not implemented
+
 	}
 
-	private boolean isIn(MouseEvent e, MenuButton mb) {
-		return mb.getBounds().contains(e.getX(), e.getY());
-	}
 }
